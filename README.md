@@ -1,10 +1,10 @@
-# WEB103 Project 3 - *Name of App Here*
+# WEB103 Project 3 - UnityGrid-Plaza
 
-Submitted by: **Your name here**
+Submitted by: Om Patki
 
-About this web app: **App description here**
+About this web app: An app that shows event times and info based on location
 
-Time spent: **X** hours
+Time spent: 7 hours
 
 ## Required Features
 
