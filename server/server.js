@@ -1,14 +1,16 @@
+// server/server.js
+
 import express from 'express'
 import path from 'path'
 import favicon from 'serve-favicon'
 import dotenv from 'dotenv'
-
 // import the router from your routes file
-
+import locationsRouter from './routes/locations.js' // ADD THIS LINE
+import eventsRouter from './routes/events.js' // ADD THIS LINE
 
 dotenv.config()
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4000
 
 const app = express()
 
@@ -23,7 +25,8 @@ else if (process.env.NODE_ENV === 'production') {
 }
 
 // specify the api path for the server to use
-
+app.use('/api/locations', locationsRouter) // ADD THIS LINE
+app.use('/api/events', eventsRouter) // ADD THIS LINE
 
 if (process.env.NODE_ENV === 'production') {
     app.get('/*', (_, res) =>

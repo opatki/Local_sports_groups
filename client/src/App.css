@@ -15,15 +15,17 @@ header {
 
 .main-header {
     height: 30vh;
-    width: 85vw;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     align-items: flex-end;
     position: relative;
     z-index: 1;
 }
 
 .header-buttons {
-    width: 30%;
     display: flex;
+    gap: 1em;
     justify-content: space-around;
 }
 

@@ -1,58 +1,48 @@
+// client/src/components/Event.jsx (MODIFIED)
+
 import React, { useState, useEffect } from 'react'
+import dates from '../utils/dates' // Import the new utility file
 import '../css/Event.css'
 
-const Event = (props) => {
+// The parent component now passes all necessary event data
+const Event = ({ id, title, date, time, image, description }) => {
 
-    const [event, setEvent] = useState([])
-    const [time, setTime] = useState([])
-    const [remaining, setRemaining] = useState([])
-
-    useEffect(() => {
-        (async () => {
-            try {
-                const eventData = await EventsAPI.getEventsById(props.id)
-                setEvent(eventData)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [])
+    const [formattedTime, setFormattedTime] = useState('')
+    const [remainingTime, setRemainingTime] = useState('')
+    const [isPastEvent, setIsPastEvent] = useState(false)
+    const [formattedDate, setFormattedDate] = useState('') 
 
     useEffect(() => {
-        (async () => {
-            try {
-                const result = await dates.formatTime(event.time)
-                setTime(result)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [event])
+        // Format the time and calculate remaining time whenever date or time props change
+        if (date && time) {
+            setFormattedDate(dates.formatDateDisplay(date))
+            setFormattedTime(dates.formatTime(time))
+            setRemainingTime(dates.getRemainingTime(date, time))
+            const past = dates.isEventPassed(date, time)
+            setIsPastEvent(past)
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const timeRemaining = await dates.formatRemainingTime(event.remaining)
-                setRemaining(timeRemaining)
-                dates.formatNegativeTimeRemaining(remaining, event.id)
+            // Stretch feature: Apply different formatting for past events via CSS class
+            // This replaces the old formatNegativeTimeRemaining logic
+            const remainingElement = document.getElementById(`remaining-${id}`)
+            if (remainingElement) {
+                if (past) {
+                    remainingElement.classList.add('negative-time-remaining')
+                } else {
+                    remainingElement.classList.remove('negative-time-remaining')
+                }
             }
-            catch (error) {
-                throw error
-            }
-        }) ()
-    }, [event])
+        }
+    }, [date, time, id])
 
     return (
-        <article className='event-information'>
-            <img src={event.image} />
+        <article className={`event-information ${isPastEvent ? 'past-event' : ''}`}>
+            <img src={image} alt={title} />
 
             <div className='event-information-overlay'>
                 <div className='text'>
-                    <h3>{event.title}</h3>
-                    <p><i className="fa-regular fa-calendar fa-bounce"></i> {event.date} <br /> {time}</p>
-                    <p id={`remaining-${event.id}`}>{remaining}</p>
+                    <h3>{title}</h3>
+                    <p><i className="fa-regular fa-calendar fa-bounce"></i> {formattedDate} <br /> {formattedTime}</p>
+                    {description && <p>{description}</p>}
                 </div>
             </div>
         </article>

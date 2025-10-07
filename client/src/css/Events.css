@@ -1,0 +1,43 @@
+/* client/src/css/Events.css (NEW FILE) */
+
+.all-events header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    background-color: var(--secondary-color);
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+}
+
+.filter-container label {
+    margin-right: 15px;
+}
+
+.all-events main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.event-with-location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    border: 3px solid var(--main-color);
+    background-color: var(--secondary-color);
+    text-align: center;
+}
+
+.event-location-tag {
+    margin-top: 10px;
+    font-weight: 800;
+    color: var(--h2-color);
+}

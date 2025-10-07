@@ -1,6 +1,8 @@
+/* client/src/css/Event.css (MODIFIED) */
+
 .event-information {
     position: relative;
-    width: 350px;
+    width: 400px;
     height: 350px;
     padding: 0px;
     margin: 20px;
@@ -32,6 +34,7 @@
 }
 
 .text {
+    width: 100%;
     position: absolute;
     overflow: hidden;
     top: 50%;
@@ -46,12 +49,4 @@
 .text p {
     color: white;
     margin-top: 10px;
-}
-
-.negative-time-remaining {
-    background-color: red;
-    color: white;
-    font-weight: 700;
-    padding: 10px;
-    text-align: center;
 }
