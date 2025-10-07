@@ -36,6 +36,7 @@ The following **additional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented required features:
+
 ![](UnityGrid-Plaza.gif)
 
 GIF created with ...  EzGif
